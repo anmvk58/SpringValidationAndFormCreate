@@ -1,0 +1,27 @@
+package com.anmv.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "`Account`")
+@Data
+@NoArgsConstructor
+public class Account implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "username", length = 50, nullable = false, unique = true, updatable = false)
+    private String username;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+}
